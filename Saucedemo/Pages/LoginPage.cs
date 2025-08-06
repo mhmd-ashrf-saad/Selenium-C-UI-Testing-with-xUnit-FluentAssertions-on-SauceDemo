@@ -15,6 +15,8 @@ namespace Saucedemo.Pages
         private IWebElement ErrorMessage => _driver.FindElement(By.CssSelector("[data-test='error']"));
         public void Login(string username, string password)
         {
+            UsernameInput.Clear();
+            PasswordInput.Clear();
             UsernameInput.SendKeys(username);
             PasswordInput.SendKeys(password);
             LoginButton.Click();
