@@ -23,5 +23,21 @@ namespace Saucedemo.Tests
             fixture.Driver.Url.Should().Contain("/inventory.html");
 
         }
+
+        [Fact]
+        public void Invalid_Login_Should_Display_Error_Message()
+        {
+            //Arrange
+            var loginPage = new LoginPage(fixture.Driver);
+
+            //Act
+            loginPage.Login("invalid_user", "wrong_password");
+            var errorMessage = loginPage.GetErrorMessage();
+
+            //Assert
+            errorMessage.Should().Contain("Username and password do not match")
+                .And.NotBeNullOrEmpty();
+
+        }
     }
 }
